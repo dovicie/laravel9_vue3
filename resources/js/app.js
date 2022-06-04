@@ -1,13 +1,10 @@
-require("./bootstrap");
 import { createApp } from "vue";
-import HeaderComponent from './components/HeaderComponent.vue'
-import ExampleComponent from './components/ExampleComponent.vue'
+import TheHeader from './components/TheHeader.vue'
 
-// createApp(App).mount("#app");
+
 createApp({
   components: {
-    HeaderComponent,
-    ExampleComponent
+    TheHeader,
   }
 }).mount("#app");
 
