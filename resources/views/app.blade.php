@@ -13,8 +13,9 @@
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
     </head>
     <body>
-        <div id="app">
+        <div id="app" class="max-w-screen-md m-auto">
             <the-header></the-header>
+            <router-view></router-view>
         </div>
         <!-- Scripts -->
         <script src="{{ mix('/js/app.js') }}" defer></script>
