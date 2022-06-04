@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr v-for="(task, index) in tasks" :key="index">
                     <td class="border px-4 py-2">
                         <button
                             class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
@@ -18,55 +18,7 @@
                             Done
                         </button>
                     </td>
-                    <td class="border px-4 py-2">Vueを勉強する</td>
-                    <td class="border px-4 py-2">
-                        <button
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        >
-                            編集
-                        </button>
-                    </td>
-                    <td class="border px-4 py-2">
-                        <button
-                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                        >
-                            削除
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2">
-                        <button
-                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-                        >
-                            Done
-                        </button>
-                    </td>
-                    <td class="border px-4 py-2">TypeScriptを勉強する</td>
-                    <td class="border px-4 py-2">
-                        <button
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        >
-                            編集
-                        </button>
-                    </td>
-                    <td class="border px-4 py-2">
-                        <button
-                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                        >
-                            削除
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2">
-                        <button
-                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-                        >
-                            Done
-                        </button>
-                    </td>
-                    <td class="border px-4 py-2">Reactを勉強する</td>
+                    <td class="border px-4 py-2">{{ task.content }}</td>
                     <td class="border px-4 py-2">
                         <button
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -87,3 +39,23 @@
     </div>
 </template>
 
+<script>
+import axios from "axios";
+export default {
+    data() {
+        return {
+            tasks: [],
+        };
+    },
+    methods: {
+        getTasks() {
+            axios.get("/api/tasks").then((res) => {
+                this.tasks = res.data;
+            });
+        },
+    },
+    mounted() {
+        this.getTasks();
+    },
+};
+</script>
