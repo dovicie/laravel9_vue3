@@ -19786,6 +19786,13 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/tasks").then(function (res) {
         _this.tasks = res.data;
       });
+    },
+    deleteTask: function deleteTask(id) {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("./api/tasks/" + id).then(function (res) {
+        _this2.getTasks();
+      });
     }
   },
   mounted: function mounted() {
@@ -19940,21 +19947,24 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+var _hoisted_7 = {
   "class": "border px-4 py-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-}, " 削除 ")], -1
-/* HOISTED */
-);
-
+};
+var _hoisted_8 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.tasks, function (task, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: index
     }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.content), 1
     /* TEXT */
-    ), _hoisted_6, _hoisted_7]);
+    ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
+      onClick: function onClick($event) {
+        return $options.deleteTask(task.id);
+      }
+    }, " 削除 ", 8
+    /* PROPS */
+    , _hoisted_8)])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])]);

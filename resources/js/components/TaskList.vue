@@ -29,6 +29,7 @@
                     <td class="border px-4 py-2">
                         <button
                             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            @click="deleteTask(task.id)"
                         >
                             削除
                         </button>
@@ -51,6 +52,11 @@ export default {
         getTasks() {
             axios.get("/api/tasks").then((res) => {
                 this.tasks = res.data;
+            });
+        },
+        deleteTask(id) {
+            axios.delete("./api/tasks/" + id).then((res) => {
+                this.getTasks();
             });
         },
     },
