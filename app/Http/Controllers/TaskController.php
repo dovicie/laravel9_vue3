@@ -15,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return Task::all();
     }
 
     /**
@@ -36,7 +36,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Task::create($request->all());
     }
 
     /**
@@ -68,9 +68,10 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->all());
+        return $task;
     }
 
     /**
@@ -79,8 +80,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return $task;
     }
 }
