@@ -18,10 +18,27 @@
                             Done
                         </button>
                     </td>
-                    <td class="border px-4 py-2">{{ task.content }}</td>
-                    <td class="border px-4 py-2">
+                    <td v-if="isOpenEditForm" class="border px-4 py-2">
+                        <input
+                            class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                            type="text"
+                            id="content"
+                            v-model="task.content"
+                        />
+                    </td>
+                    <td v-else class="border px-4 py-2">{{ task.content }}</td>
+                    <td v-if="isOpenEditForm" class="border px-4 py-2">
                         <button
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            @click="toggleEditForm"
+                        >
+                            更新
+                        </button>
+                    </td>
+                    <td v-else class="border px-4 py-2">
+                        <button
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            @click="toggleEditForm"
                         >
                             編集
                         </button>
@@ -63,5 +80,14 @@ export default {
     mounted() {
         this.getTasks();
     },
+};
+</script>
+
+<script setup>
+import { ref } from "vue";
+const isOpenEditForm = ref(false);
+
+const toggleEditForm = () => {
+    isOpenEditForm.value = !isOpenEditForm.value;
 };
 </script>
