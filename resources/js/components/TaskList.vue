@@ -1,3 +1,14 @@
+<script setup>
+import { ref } from "vue";
+import TaskItem from "./TaskItem.vue";
+
+const isOpenEditForm = ref(false);
+
+const toggleEditForm = () => {
+    isOpenEditForm.value = !isOpenEditForm.value;
+};
+</script>
+
 <template>
     <div class="py-3">
         <table class="table-fixed w-full text-center">
@@ -11,7 +22,7 @@
             </thead>
             <tbody>
                 <tr v-for="(task, index) in tasks" :key="index">
-                    <td class="border px-4 py-2">
+                    <!-- <td class="border px-4 py-2">
                         <button
                             class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                         >
@@ -50,7 +61,8 @@
                         >
                             削除
                         </button>
-                    </td>
+                    </td> -->
+                    <TaskItem :content="task.content" :id="task.id" />
                 </tr>
             </tbody>
         </table>
@@ -80,14 +92,5 @@ export default {
     mounted() {
         this.getTasks();
     },
-};
-</script>
-
-<script setup>
-import { ref } from "vue";
-const isOpenEditForm = ref(false);
-
-const toggleEditForm = () => {
-    isOpenEditForm.value = !isOpenEditForm.value;
 };
 </script>

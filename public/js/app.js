@@ -19759,9 +19759,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskList.vue?vue&type=script&setup=true&lang=js":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskItem.vue?vue&type=script&setup=true&lang=js":
 /*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskList.vue?vue&type=script&setup=true&lang=js ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskItem.vue?vue&type=script&setup=true&lang=js ***!
   \*************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -19775,6 +19775,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
 
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'TaskItem',
+  props: {
+    id: Number,
+    content: String
+  },
+  emits: ["getTasks"],
+  setup: function setup(__props, _ref) {
+    var expose = _ref.expose,
+        emit = _ref.emit;
+    expose();
+    var props = __props;
+    var isOpenEditForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+
+    var toggleEditForm = function toggleEditForm() {
+      isOpenEditForm.value = !isOpenEditForm.value;
+    };
+
+    var deleteTask = function deleteTask(id) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("./api/tasks/" + id).then(function (res) {// this.getTasks();
+        // emit('getTasks')
+      });
+    };
+
+    var __returned__ = {
+      props: props,
+      emit: emit,
+      isOpenEditForm: isOpenEditForm,
+      toggleEditForm: toggleEditForm,
+      deleteTask: deleteTask,
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      axios: (axios__WEBPACK_IMPORTED_MODULE_1___default())
+    };
+    Object.defineProperty(__returned__, '__isScriptSetup', {
+      enumerable: false,
+      value: true
+    });
+    return __returned__;
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskList.vue?vue&type=script&setup=true&lang=js":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskList.vue?vue&type=script&setup=true&lang=js ***!
+  \*************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _TaskItem_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TaskItem.vue */ "./resources/js/components/TaskItem.vue");
+
 var __default__ = {
   data: function data() {
     return {
@@ -19785,14 +19844,14 @@ var __default__ = {
     getTasks: function getTasks() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/tasks").then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/tasks").then(function (res) {
         _this.tasks = res.data;
       });
     },
     deleteTask: function deleteTask(id) {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("./api/tasks/" + id).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("./api/tasks/" + id).then(function (res) {
         _this2.getTasks();
       });
     }
@@ -19801,12 +19860,14 @@ var __default__ = {
     this.getTasks();
   }
 };
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/Object.assign(__default__, {
   name: 'TaskList',
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var isOpenEditForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var isOpenEditForm = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
 
     var toggleEditForm = function toggleEditForm() {
       isOpenEditForm.value = !isOpenEditForm.value;
@@ -19815,8 +19876,9 @@ var __default__ = {
     var __returned__ = {
       isOpenEditForm: isOpenEditForm,
       toggleEditForm: toggleEditForm,
-      axios: (axios__WEBPACK_IMPORTED_MODULE_1___default()),
-      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref
+      axios: (axios__WEBPACK_IMPORTED_MODULE_0___default()),
+      ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
+      TaskItem: _TaskItem_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -19921,6 +19983,77 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskItem.vue?vue&type=template&id=00f813a3":
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskItem.vue?vue&type=template&id=00f813a3 ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "border px-4 py-2"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+}, " Done ")], -1
+/* HOISTED */
+);
+
+var _hoisted_2 = {
+  key: 0,
+  "class": "border px-4 py-2"
+};
+var _hoisted_3 = {
+  key: 1,
+  "class": "border px-4 py-2"
+};
+var _hoisted_4 = {
+  key: 2,
+  "class": "border px-4 py-2"
+};
+var _hoisted_5 = {
+  key: 3,
+  "class": "border px-4 py-2"
+};
+var _hoisted_6 = {
+  "class": "border px-4 py-2"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, $setup.isOpenEditForm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
+    type: "text",
+    id: "content",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $props.content = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.content]])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.content), 1
+  /* TEXT */
+  )), $setup.isOpenEditForm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+    onClick: $setup.toggleEditForm
+  }, " 更新 ")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+    onClick: $setup.toggleEditForm
+  }, " 編集 ")])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.deleteTask($props.id);
+    })
+  }, " 削除 ")])], 64
+  /* STABLE_FRAGMENT */
+  );
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskList.vue?vue&type=template&id=0afd8bae":
 /*!******************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskList.vue?vue&type=template&id=0afd8bae ***!
@@ -19953,64 +20086,16 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "border px-4 py-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-}, " Done ")], -1
-/* HOISTED */
-);
-
-var _hoisted_5 = {
-  key: 0,
-  "class": "border px-4 py-2"
-};
-var _hoisted_6 = ["onUpdate:modelValue"];
-var _hoisted_7 = {
-  key: 1,
-  "class": "border px-4 py-2"
-};
-var _hoisted_8 = {
-  key: 2,
-  "class": "border px-4 py-2"
-};
-var _hoisted_9 = {
-  key: 3,
-  "class": "border px-4 py-2"
-};
-var _hoisted_10 = {
-  "class": "border px-4 py-2"
-};
-var _hoisted_11 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.tasks, function (task, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: index
-    }, [_hoisted_4, $setup.isOpenEditForm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "class": "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none",
-      type: "text",
-      id: "content",
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return task.content = $event;
-      }
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td class=\"border px-4 py-2\">\n                        <button\n                            class=\"bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded\"\n                        >\n                            Done\n                        </button>\n                    </td>\n                    <td v-if=\"isOpenEditForm\" class=\"border px-4 py-2\">\n                        <input\n                            class=\"appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none\"\n                            type=\"text\"\n                            id=\"content\"\n                            v-model=\"task.content\"\n                        />\n                    </td>\n                    <td v-else class=\"border px-4 py-2\">{{ task.content }}</td>\n                    <td v-if=\"isOpenEditForm\" class=\"border px-4 py-2\">\n                        <button\n                            class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded\"\n                            @click=\"toggleEditForm\"\n                        >\n                            更新\n                        </button>\n                    </td>\n                    <td v-else class=\"border px-4 py-2\">\n                        <button\n                            class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded\"\n                            @click=\"toggleEditForm\"\n                        >\n                            編集\n                        </button>\n                    </td>\n                    <td class=\"border px-4 py-2\">\n                        <button\n                            class=\"bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded\"\n                            @click=\"deleteTask(task.id)\"\n                        >\n                            削除\n                        </button>\n                    </td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TaskItem"], {
+      content: task.content,
+      id: task.id
     }, null, 8
     /* PROPS */
-    , _hoisted_6), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, task.content]])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.content), 1
-    /* TEXT */
-    )), $setup.isOpenEditForm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
-      onClick: $setup.toggleEditForm
-    }, " 更新 ")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
-      onClick: $setup.toggleEditForm
-    }, " 編集 ")])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
-      onClick: function onClick($event) {
-        return $options.deleteTask(task.id);
-      }
-    }, " 削除 ", 8
-    /* PROPS */
-    , _hoisted_11)])]);
+    , ["content", "id"])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])]);
@@ -20410,6 +20495,34 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/TaskItem.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/TaskItem.vue ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TaskItem_vue_vue_type_template_id_00f813a3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TaskItem.vue?vue&type=template&id=00f813a3 */ "./resources/js/components/TaskItem.vue?vue&type=template&id=00f813a3");
+/* harmony import */ var _TaskItem_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TaskItem.vue?vue&type=script&setup=true&lang=js */ "./resources/js/components/TaskItem.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var _Users_hayato_develop_laravel9_vue3_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_hayato_develop_laravel9_vue3_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_TaskItem_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_TaskItem_vue_vue_type_template_id_00f813a3__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/TaskItem.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/TaskList.vue":
 /*!**********************************************!*\
   !*** ./resources/js/components/TaskList.vue ***!
@@ -20482,6 +20595,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/TaskItem.vue?vue&type=script&setup=true&lang=js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/TaskItem.vue?vue&type=script&setup=true&lang=js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TaskItem_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TaskItem_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TaskItem.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskItem.vue?vue&type=script&setup=true&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/TaskList.vue?vue&type=script&setup=true&lang=js":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/TaskList.vue?vue&type=script&setup=true&lang=js ***!
@@ -20526,6 +20655,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TaskCreate_vue_vue_type_template_id_86cdc1e8__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TaskCreate_vue_vue_type_template_id_86cdc1e8__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TaskCreate.vue?vue&type=template&id=86cdc1e8 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskCreate.vue?vue&type=template&id=86cdc1e8");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TaskItem.vue?vue&type=template&id=00f813a3":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/TaskItem.vue?vue&type=template&id=00f813a3 ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TaskItem_vue_vue_type_template_id_00f813a3__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TaskItem_vue_vue_type_template_id_00f813a3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TaskItem.vue?vue&type=template&id=00f813a3 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TaskItem.vue?vue&type=template&id=00f813a3");
 
 
 /***/ }),
