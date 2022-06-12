@@ -20,7 +20,12 @@ const toggleEditForm = () => {
 
 const deleteTask = (id) => {
     axios.delete("./api/tasks/" + id).then((res) => {
-        console.log("delete");
+        props.getTasks();
+    });
+};
+
+const updataTask = (id, task) => {
+    axios.put("/tasks/" + id, task).then((res) => {
         props.getTasks();
     });
 };
@@ -46,7 +51,7 @@ const deleteTask = (id) => {
     <td v-if="isOpenEditForm" class="border px-4 py-2">
         <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            @click="toggleEditForm"
+            @click="updataTask(props.id, task)"
         >
             更新
         </button>

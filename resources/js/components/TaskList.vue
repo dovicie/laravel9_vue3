@@ -4,18 +4,12 @@ import TaskItem from "./TaskItem.vue";
 import axios from "axios";
 
 const tasks = ref([]);
-// const isOpenEditForm = ref(false);
 
 const getTasks = () => {
-    console.log("getTasks");
     axios.get("/api/tasks").then((res) => {
         tasks.value = res.data;
     });
 };
-
-// const toggleEditForm = () => {
-//     isOpenEditForm.value = !isOpenEditForm.value;
-// };
 
 onMounted(() => {
     getTasks();
@@ -34,7 +28,7 @@ onMounted(() => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(task, index) in tasks" :key="index">
+                <tr v-for="task in tasks" :key="task.id">
                     <TaskItem
                         :content="task.content"
                         :id="task.id"

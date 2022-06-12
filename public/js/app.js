@@ -19797,7 +19797,12 @@ __webpack_require__.r(__webpack_exports__);
 
     var deleteTask = function deleteTask(id) {
       axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("./api/tasks/" + id).then(function (res) {
-        console.log("delete");
+        props.getTasks();
+      });
+    };
+
+    var updataTask = function updataTask(id, task) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().put("/tasks/" + id, task).then(function (res) {
         props.getTasks();
       });
     };
@@ -19808,6 +19813,7 @@ __webpack_require__.r(__webpack_exports__);
       isOpenEditForm: isOpenEditForm,
       toggleEditForm: toggleEditForm,
       deleteTask: deleteTask,
+      updataTask: updataTask,
       reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       axios: (axios__WEBPACK_IMPORTED_MODULE_1___default())
@@ -19845,17 +19851,13 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var tasks = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]); // const isOpenEditForm = ref(false);
+    var tasks = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
 
     var getTasks = function getTasks() {
-      console.log("getTasks");
       axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/tasks").then(function (res) {
         tasks.value = res.data;
       });
-    }; // const toggleEditForm = () => {
-    //     isOpenEditForm.value = !isOpenEditForm.value;
-    // };
-
+    };
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       getTasks();
@@ -20026,13 +20028,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )), $setup.isOpenEditForm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
-    onClick: $setup.toggleEditForm
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.updataTask($setup.props.id, $setup.task);
+    })
   }, " 更新 ")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
     onClick: $setup.toggleEditForm
   }, " 編集 ")])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
-    onClick: _cache[1] || (_cache[1] = function ($event) {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
       return $setup.deleteTask($setup.props.id);
     })
   }, " 削除 ")])], 64
@@ -20075,9 +20079,9 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.tasks, function (task, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.tasks, function (task) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-      key: index
+      key: task.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TaskItem"], {
       content: task.content,
       id: task.id,
