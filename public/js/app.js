@@ -19787,6 +19787,9 @@ __webpack_require__.r(__webpack_exports__);
         emit = _ref.emit;
     expose();
     var props = __props;
+    var task = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      content: props.content
+    });
     var isOpenEditForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
 
     var toggleEditForm = function toggleEditForm() {
@@ -19801,10 +19804,12 @@ __webpack_require__.r(__webpack_exports__);
 
     var __returned__ = {
       props: props,
+      task: task,
       emit: emit,
       isOpenEditForm: isOpenEditForm,
       toggleEditForm: toggleEditForm,
       deleteTask: deleteTask,
+      reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       axios: (axios__WEBPACK_IMPORTED_MODULE_1___default())
     };
@@ -20030,11 +20035,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     id: "content",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $props.content = $event;
+      return $setup.task.content = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.content]])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.content), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.task.content]])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.task.content), 1
   /* TEXT */
   )), $setup.isOpenEditForm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
@@ -20045,7 +20050,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, " 編集 ")])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
     onClick: _cache[1] || (_cache[1] = function ($event) {
-      return $setup.deleteTask($props.id);
+      return $setup.deleteTask($setup.task.id);
     })
   }, " 削除 ")])], 64
   /* STABLE_FRAGMENT */
