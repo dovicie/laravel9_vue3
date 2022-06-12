@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, ref } from "vue";
 import TaskItem from "./TaskItem.vue";
 import axios from "axios";
 
@@ -7,16 +7,11 @@ const tasks = ref([]);
 // const isOpenEditForm = ref(false);
 
 const getTasks = () => {
+    console.log("getTasks");
     axios.get("/api/tasks").then((res) => {
         tasks.value = res.data;
     });
 };
-
-// const deleteTask = (id) => {
-//     axios.delete("./api/tasks/" + id).then((res) => {
-//         this.getTasks();
-//     });
-// };
 
 // const toggleEditForm = () => {
 //     isOpenEditForm.value = !isOpenEditForm.value;
@@ -40,7 +35,11 @@ onMounted(() => {
             </thead>
             <tbody>
                 <tr v-for="(task, index) in tasks" :key="index">
-                    <TaskItem :content="task.content" :id="task.id" />
+                    <TaskItem
+                        :content="task.content"
+                        :id="task.id"
+                        :getTasks="getTasks"
+                    />
                 </tr>
             </tbody>
         </table>

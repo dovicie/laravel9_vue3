@@ -5,13 +5,12 @@ import axios from "axios";
 const props = defineProps({
     id: Number,
     content: String,
+    getTasks: Function,
 });
 
 const task = reactive({
     content: props.content,
 });
-
-const emit = defineEmits(["getTasks"]);
 
 const isOpenEditForm = ref(false);
 
@@ -21,8 +20,8 @@ const toggleEditForm = () => {
 
 const deleteTask = (id) => {
     axios.delete("./api/tasks/" + id).then((res) => {
-        // this.getTasks();
-        // emit('getTasks')
+        console.log("delete");
+        props.getTasks();
     });
 };
 </script>
@@ -63,7 +62,7 @@ const deleteTask = (id) => {
     <td class="border px-4 py-2">
         <button
             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            @click="deleteTask(task.id)"
+            @click="deleteTask(props.id)"
         >
             削除
         </button>

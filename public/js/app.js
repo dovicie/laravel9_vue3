@@ -19779,12 +19779,11 @@ __webpack_require__.r(__webpack_exports__);
   name: 'TaskItem',
   props: {
     id: Number,
-    content: String
+    content: String,
+    getTasks: Function
   },
-  emits: ["getTasks"],
   setup: function setup(__props, _ref) {
-    var expose = _ref.expose,
-        emit = _ref.emit;
+    var expose = _ref.expose;
     expose();
     var props = __props;
     var task = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
@@ -19797,15 +19796,15 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var deleteTask = function deleteTask(id) {
-      axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("./api/tasks/" + id).then(function (res) {// this.getTasks();
-        // emit('getTasks')
+      axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("./api/tasks/" + id).then(function (res) {
+        console.log("delete");
+        props.getTasks();
       });
     };
 
     var __returned__ = {
       props: props,
       task: task,
-      emit: emit,
       isOpenEditForm: isOpenEditForm,
       toggleEditForm: toggleEditForm,
       deleteTask: deleteTask,
@@ -19849,15 +19848,11 @@ __webpack_require__.r(__webpack_exports__);
     var tasks = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]); // const isOpenEditForm = ref(false);
 
     var getTasks = function getTasks() {
+      console.log("getTasks");
       axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/tasks").then(function (res) {
         tasks.value = res.data;
       });
-    }; // const deleteTask = (id) => {
-    //     axios.delete("./api/tasks/" + id).then((res) => {
-    //         this.getTasks();
-    //     });
-    // };
-    // const toggleEditForm = () => {
+    }; // const toggleEditForm = () => {
     //     isOpenEditForm.value = !isOpenEditForm.value;
     // };
 
@@ -19869,7 +19864,6 @@ __webpack_require__.r(__webpack_exports__);
       tasks: tasks,
       getTasks: getTasks,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
-      reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       TaskItem: _TaskItem_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       axios: (axios__WEBPACK_IMPORTED_MODULE_2___default())
@@ -20039,7 +20033,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, " 編集 ")])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
     onClick: _cache[1] || (_cache[1] = function ($event) {
-      return $setup.deleteTask($setup.task.id);
+      return $setup.deleteTask($setup.props.id);
     })
   }, " 削除 ")])], 64
   /* STABLE_FRAGMENT */
@@ -20086,7 +20080,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TaskItem"], {
       content: task.content,
-      id: task.id
+      id: task.id,
+      getTasks: $setup.getTasks
     }, null, 8
     /* PROPS */
     , ["content", "id"])]);
