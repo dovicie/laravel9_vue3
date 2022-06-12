@@ -1,12 +1,30 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import TaskItem from "./TaskItem.vue";
+import axios from "axios";
 
-const isOpenEditForm = ref(false);
+const tasks = ref([]);
+// const isOpenEditForm = ref(false);
 
-const toggleEditForm = () => {
-    isOpenEditForm.value = !isOpenEditForm.value;
+const getTasks = () => {
+    axios.get("/api/tasks").then((res) => {
+        tasks.value = res.data;
+    });
 };
+
+// const deleteTask = (id) => {
+//     axios.delete("./api/tasks/" + id).then((res) => {
+//         this.getTasks();
+//     });
+// };
+
+// const toggleEditForm = () => {
+//     isOpenEditForm.value = !isOpenEditForm.value;
+// };
+
+onMounted(() => {
+    getTasks();
+});
 </script>
 
 <template>
@@ -28,29 +46,3 @@ const toggleEditForm = () => {
         </table>
     </div>
 </template>
-
-<script>
-import axios from "axios";
-export default {
-    data() {
-        return {
-            tasks: [],
-        };
-    },
-    methods: {
-        getTasks() {
-            axios.get("/api/tasks").then((res) => {
-                this.tasks = res.data;
-            });
-        },
-        deleteTask(id) {
-            axios.delete("./api/tasks/" + id).then((res) => {
-                this.getTasks();
-            });
-        },
-    },
-    mounted() {
-        this.getTasks();
-    },
-};
-</script>
