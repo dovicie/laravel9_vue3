@@ -19802,9 +19802,10 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var updataTask = function updataTask(id, task) {
-      axios__WEBPACK_IMPORTED_MODULE_1___default().put("/tasks/" + id, task).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().put("./api/tasks/" + id, task).then(function (res) {
         props.getTasks();
       });
+      toggleEditForm();
     };
 
     var __returned__ = {

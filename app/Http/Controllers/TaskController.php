@@ -72,6 +72,7 @@ class TaskController extends Controller
     {
         $task->update($request->all());
         return $task;
+
     }
 
     /**

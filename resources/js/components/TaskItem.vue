@@ -25,9 +25,10 @@ const deleteTask = (id) => {
 };
 
 const updataTask = (id, task) => {
-    axios.put("/tasks/" + id, task).then((res) => {
+    axios.put("./api/tasks/" + id, task).then((res) => {
         props.getTasks();
     });
+    toggleEditForm();
 };
 </script>
 
